@@ -1,0 +1,11 @@
+subprojects {
+    apply plugin: 'java'
+    repositories {
+        mavenCentral()
+    }
+    group 'ua.com.epam.lab.yegorchevardin.gradle'
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

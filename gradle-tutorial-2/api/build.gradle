@@ -1,0 +1,18 @@
+dependencies {
+    implementation project(':core')
+}
+
+jar {
+    duplicatesStrategy = 'exclude'
+    dependsOn project(':core').classes
+    manifest {
+        attributes (
+                'Main-Class': 'ua.com.epam.lab.yegorchevardin.gradle.api.App',
+                'Implementation-Title': 'App',
+                'Implementation-Version': '1.0.0'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group 'ua.com.epam.lab.yegorchevardin.gradle.task1'
+version '1.3.5'
+
+repositories {
+    mavenCentral()
+}
+
+jar {
+    manifest {
+        attributes (
+                'Main-Class': 'ua.com.epam.lab.yegorchevardin.gradle.task1.StringUtils',
+                'Implementation-Title': 'StringUtils',
+                'Implementation-Version': '1.3.5'
+        )
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+test {
+    useJUnitPlatform()
+}
